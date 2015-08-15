@@ -21,7 +21,7 @@
         <div>
           <div>
             <div ng-if="message.type=='error'" class="alert alert-danger text-center">{{message.text}}</div>
-            <div ng-if="message.type=='info'" class="alert alert-success text-center">Connected to api version {{apiVersion}}, on build #{{apiBuildnum}} <div class="separator"></div>
+            <div ng-if="message.type=='info'" class="alert alert-success text-center">Connected to api version {{apiVersion}}, on build #{{apiBuildnum}}, at {{apiAccessTime}}. <div class="separator"></div>
             Get an access token (Github -> Settings -> Personal Access Tokens) and put it below.<div class="separator"></div>
             Choose a repository to view, the number of days back, and either open or closed issues.</div>
           </div>

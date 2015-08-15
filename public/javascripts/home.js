@@ -13,6 +13,7 @@ app.controller('mainCtrl', function ($scope, $log, env_factory, factory) {
   $scope.env = {};
   $scope.apiVersion = '';
   $scope.apiBuildnum = '';
+  $scope.apiAccessTime = 'Invalid Date';
 
   env_factory.get()
   .success(function (data) {
@@ -30,6 +31,8 @@ app.controller('mainCtrl', function ($scope, $log, env_factory, factory) {
     .success(function (data) {
       $scope.apiVersion = data.version;
       $scope.apiBuildnum = data.buildnumber;
+      if (!isNaN(Date.parse(data.time)))
+        $scope.apiAccessTime = new Date(data.time).toLocaleTimeString();
     })
     .error(function (reason) {
       $scope.message = {'type': 'error', 'text': 'Unable to connect to API!'};
