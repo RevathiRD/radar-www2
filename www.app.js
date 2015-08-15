@@ -1,8 +1,6 @@
 var http = require('http');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var winston = require('winston');
@@ -12,7 +10,6 @@ var app = express();
 global.logger = winston;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('secret'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 if (process.env.FILE_LOG){
@@ -23,7 +20,7 @@ logger.add(winston.transports.Console, { level: process.env.CONSOLE_LOGLEVEL || 
 
 app.get('/', function(req, res) {
   logger.info('Main page');
-  res.sendFile(path.resolve('./public/views/home.html')); 
+  res.sendFile(path.resolve('./public/views/home.html'));
 });
 
 app.get('/env', function(req, res) {
