@@ -5,12 +5,13 @@ app.controller('mainCtrl', function ($scope, $log, env_factory, factory) {
   $scope.repo = 'shippable/support';
   $scope.accessToken = '';
   $scope.days = 0;
-  $scope.daysEnd = 5;
+  $scope.daysEnd = 3;
   $scope.indexData = {};
   $scope.state = 'submit';
   $scope.loading = false;
   $scope.log = $log;
   $scope.env = {};
+  $scope.apiMessage = 'nothing';
   $scope.apiVersion = '';
   $scope.apiBuildnum = '';
   $scope.apiAccessTime = 'Invalid Date';
@@ -31,6 +32,8 @@ app.controller('mainCtrl', function ($scope, $log, env_factory, factory) {
     .success(function (data) {
       $scope.apiVersion = data.version;
       $scope.apiBuildnum = data.buildnumber;
+      if (data.message)
+        $scope.apiMessage = data.message;
       if (!isNaN(Date.parse(data.time)))
         $scope.apiAccessTime = new Date(data.time).toLocaleTimeString();
     })
